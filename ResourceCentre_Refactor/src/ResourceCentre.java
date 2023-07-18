@@ -227,16 +227,16 @@ public class ResourceCentre {
 		if (tag.isEmpty() || dueDate.isEmpty())
 			return false;
 		
-		for (int i = 0; i < camcorderList.size(); i++) {
-					
-			if (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag())				
-					&& camcorderList.get(i).getIsAvailable() == true) {
+		for (Camcorder cc : camcorderList) {
+			String assetTag = cc.getAssetTag();
+			boolean availability = cc.getIsAvailable() == true;
+			if (tag.equalsIgnoreCase(assetTag)
+					&& availability) {
 				
-				camcorderList.get(i).setIsAvailable(false);
-				camcorderList.get(i).setDueDate(dueDate);
+				cc.setIsAvailable(false);
+				cc.setDueDate(dueDate);
 				
 				isLoaned = true;
-				
 			}
 		}
 		return isLoaned;
@@ -256,24 +256,24 @@ public class ResourceCentre {
 	
 
 	public static boolean doLoanChromebook(ArrayList<Chromebook> chromebookList, String tag, String dueDate) {
-		boolean isLoaned = false;
-
-		if (tag.isEmpty() || dueDate.isEmpty())
-			return false;
+		boolean loaned = false;
 		
-		for (int i = 0; i < chromebookList.size(); i++) {
-
-			if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
-					&& chromebookList.get(i).getIsAvailable() == true) {
+		if (tag.isEmpty() || dueDate.isEmpty()) 
+			loaned = false;
+		
+		for (Chromebook i : chromebookList) {
+			String assetTag = i.getAssetTag();
+			boolean availability = i.getIsAvailable() == true;
+			if (tag.equalsIgnoreCase(assetTag)
+					&& availability) {
 				
-				chromebookList.get(i).setIsAvailable(false);
-				chromebookList.get(i).setDueDate(dueDate);
+				i.setIsAvailable(false);
+				i.setDueDate(dueDate);
 				
-				isLoaned = true;
-				
+				loaned = true;
 			}
 		}
-		return isLoaned;
+		return loaned;
 	}
 
 	public static void loanChromebook(ArrayList<Chromebook> chromebookList) {
@@ -297,9 +297,10 @@ public class ResourceCentre {
 			return false;
 		
 		for (int i = 0; i < camcorderList.size(); i++) {
-
-			if (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag())
-					&& camcorderList.get(i).getIsAvailable() == false) {
+			String assetTag = camcorderList.get(i).getAssetTag();
+			boolean availability = camcorderList.get(i).getIsAvailable() == false;
+			if (tag.equalsIgnoreCase(assetTag)
+					&& availability) {
 				camcorderList.get(i).setIsAvailable(true);
 				camcorderList.get(i).setDueDate("");
 				isReturned = true;
@@ -328,12 +329,13 @@ public class ResourceCentre {
 		if (tag.isEmpty())
 			return false;
 		
-		for (int i = 0; i < chromebookList.size(); i++) {
-
-			if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
-					&& chromebookList.get(i).getIsAvailable() == false) {
-				chromebookList.get(i).setIsAvailable(true);
-				chromebookList.get(i).setDueDate("");
+		for (Chromebook cb : chromebookList) {
+			String assetTag = cb.getAssetTag();
+			boolean availability = cb.getIsAvailable() == false;
+			if (tag.equalsIgnoreCase(assetTag)
+					&& availability) {
+				cb.setIsAvailable(true);
+				cb.setDueDate("");
 				isReturned = true;
 				
 			}
