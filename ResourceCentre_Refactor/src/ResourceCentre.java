@@ -41,7 +41,7 @@ public class ResourceCentre {
 					System.out.println("Camcorder added");
 
 				} else if (itemType == 2) {
-					// Add Chromebook
+					// Add Chromebooks
 					Chromebook cb = inputChromebook();
 					ResourceCentre.addChromebook(chromebookList, cb);
 					System.out.println("Chromebook added");
